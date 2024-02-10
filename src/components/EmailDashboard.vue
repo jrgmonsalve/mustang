@@ -2,37 +2,41 @@
   <div>
     <!-- Encabezado -->
     <div class="bg-red-500 text-white p-4 rounded-t-lg">
-      <h1 class="text-xl font-bold">MamuroEmail</h1>
+      <h1 class="text-xl font-bold">Search Emails</h1>
     </div>
     
     <!-- Buscador -->
     <div class="flex justify-center">
-      <SearchField />
+      <SearchField @data-generated="onDataGenerated"/>
     </div>
-    
+    <div class="flex">
+      <SumaryEmailsMatchTable :data="emailsMatched"/>
+      <EmailBody />
+    </div>
   </div>
 </template>
 
 <script>
-import { provide, reactive } from 'vue';
 import SearchField from './SearchField.vue';
-
+import SumaryEmailsMatchTable from './SumaryEmailsMatchTable.vue';
+import EmailBody from './EmailBody.vue';
 
 export default {
   name: 'EmailDashboard',
-  components: {
-    SearchField 
+  data(){
+    return {
+      emailsMatched:[]
+    };
   },
-  setup() {
-    // Crear un estado reactivo para los datos de búsqueda
-    const searchResults = reactive({
-      emails: []
-    });
-
-    // Proporcionar el estado y cualquier método para modificarlo
-    provide('searchResults', searchResults);
-
-    return {}; // setup debe retornar siempre un objeto
-  }
+  components: {
+    SearchField,
+    SumaryEmailsMatchTable,
+    EmailBody 
+  },
+  methods: {
+    onDataGenerated(data) {
+      this.emailsMatched = data;
+    },
+  },
 }
 </script>
