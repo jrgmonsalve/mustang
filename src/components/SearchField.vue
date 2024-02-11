@@ -42,7 +42,7 @@ export default {
           _source: hit._source
         }));
 
-        this.$emit('data-generated', dataParsed);
+        this.$emit('emailsFetched', dataParsed);
 
       } catch (error) {
         this.error = error.message; 

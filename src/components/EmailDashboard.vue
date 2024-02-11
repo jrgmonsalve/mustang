@@ -7,11 +7,13 @@
     
     <!-- Buscador -->
     <div class="flex justify-center">
-      <SearchField @data-generated="onDataGenerated"/>
+      <SearchField @emailsFetched="handleEmailsFetched"/>
     </div>
     <div class="flex">
-      <SumaryEmailsMatchTable :data="emailsMatched"/>
-      <EmailBody />
+      <SumaryEmailsMatchTable 
+      :data="emailsToShow" 
+      @bodyEmail="handleBodyEmail"/>
+      <EmailBody :data="emailBodyToShow"/>
     </div>
   </div>
 </template>
@@ -25,7 +27,8 @@ export default {
   name: 'EmailDashboard',
   data(){
     return {
-      emailsMatched:[]
+      emailsToShow:[],
+      emailBodyToShow:"Choose an email"
     };
   },
   components: {
@@ -34,8 +37,11 @@ export default {
     EmailBody 
   },
   methods: {
-    onDataGenerated(data) {
-      this.emailsMatched = data;
+    handleEmailsFetched(data) {
+      this.emailsToShow = data;
+    },
+    handleBodyEmail(data) {
+      this.emailBodyToShow = data;
     },
   },
 }
