@@ -7,7 +7,10 @@
     
     <!-- Buscador -->
     <div class="flex justify-center">
-      <SearchField @emailsFetched="handleEmailsFetched"/>
+      <SearchField 
+      @emailsFetched="handleEmailsFetched"
+      @bodyEmail="handleBodyEmail"
+      />
     </div>
     <div class="flex">
       <SumaryEmailsMatchTable 

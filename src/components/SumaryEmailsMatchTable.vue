@@ -42,8 +42,8 @@ export default {
   methods: {
     async viewEmailBody(id) {
       try {
-        const response = await axios.get(`TU_API_ENDPOINT/${id}`);
-        this.$emit('bodyEmail', response.data);
+        const response = await axios.get(`http://localhost:3000/emails/${id}`);
+        this.$emit('bodyEmail', response.data._source.body);
       } catch (error) {
         console.error('Error fetching details:', error);
       }

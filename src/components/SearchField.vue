@@ -43,6 +43,7 @@ export default {
         }));
 
         this.$emit('emailsFetched', dataParsed);
+        this.$emit('bodyEmail', "Choose an email");
 
       } catch (error) {
         this.error = error.message; 
